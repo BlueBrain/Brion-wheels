@@ -89,6 +89,8 @@ script:
 
 after_success:
     # Copy compiled wheels to dist/ where Travis `dpl` tool can find them and upload to PyPI
-    - mkdir -p dist; cp ${TRAVIS_BUILD_DIR}/wheelhouse/*.whl dist
+    - mkdir -p dist; mkdir -p dist/fixeddist; cp ${TRAVIS_BUILD_DIR}/wheelhouse/*.whl dist
+    - pip install auditwheel
+    - auditwheel repair -w dist/fixeddist dist/*.whl 
     - pip install twine
-    - twine upload --verbose -u bbp.opensource -p ${PYPI_PASSWORD} dist/*
+    - twine upload --verbose -u bbp.opensource -p ${PYPI_PASSWORD} dist/fixeddist/*
