@@ -41,5 +41,5 @@ function pre_build {
 
 function run_tests {
     python --version
-    python -c 'import sys; import brain; print(brain.__version__)'
+    python -c 'import sys; import brion; print(brion.__version__)'
 }
