@@ -3,4 +3,4 @@
 	url = https://github.com/matthew-brett/multibuild.git
 [submodule "Brion"]
 	path = Brion
-	url = https://github.com/BlueBrain/Brion
+	url = https://github.com/NadirRoGue/Brion.git
