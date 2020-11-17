@@ -1,7 +1,7 @@
 set -x
 
 function build_cmake {
-    build_simple cmake 3.15.7 https://cmake.org/files/v3.15/
+    build_simple cmake 3.16.9 https://cmake.org/files/v3.16/
 }
 
 function build_boost {
