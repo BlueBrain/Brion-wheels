@@ -20,6 +20,9 @@ function build_boost {
 }
 
 function pre_build {
+    # Need openssl for cmake 3.16.9
+    build_openssl
+
     if [ -z "$IS_OSX" ]; then
         build_cmake
         build_hdf5
