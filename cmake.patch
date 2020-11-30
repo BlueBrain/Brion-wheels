@@ -1,0 +1,20 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 2565567..2c95b03 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -106,6 +106,14 @@ if(${CMAKE_VERSION} VERSION_LESS "3.12.0")
+     find_package(NumPy 1.7 REQUIRED)
+     set(NUMPY_FOUND ${NumPy_FOUND})
+ else()
++    if(DEFINED ENV{PYTHON_ROOT_PATH})
++        message(INFO "DEFINED ==============> PP as $ENV{PYTHON_ROOT_PATH}")
++        set(PYTHON_ROOT_PATH $ENV{PYTHON_ROOT_PATH})
++        message(INFO "ROOT_PATH : ${PYTHON_ROOT_PATH}")
++        set(Python3_FIND_STRATEGY LOCATION)
++        set(Python3_ROOT_DIR ${PYTHON_ROOT_PATH})
++    endif()
++
+     find_package(Python3 COMPONENTS Interpreter Development NumPy)
+     # Addpat cmake 3.12+ variables to our variable system
+     if(${Python3_FOUND} AND ${Python3_NumPy_FOUND})
+~                                                         
