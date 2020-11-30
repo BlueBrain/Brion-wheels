@@ -1,96 +1,25 @@
 env:
   global:
-    - REPO_DIR=Brion
-    # Commit from your-project that you want to build
-    - BUILD_COMMIT=HEAD
-    # pip dependencies to _build_ your project
-    - BUILD_DEPENDS="numpy"
-    # pip dependencies to _test_ your project.  Include any dependencies
-    # that you need, that are also specified in BUILD_DEPENDS, this will be
-    # a separate install.
-    - TEST_DEPENDS="numpy nose"
-    - PLAT=x86_64
-    - UNICODE_WIDTH=32
-    - secure: 
-"P/i8+AapzUHdoFGVZDYvYTPbcxSaJmmlYCSb1rv/sv/yaIj9WsaGPpxLbe68Tl6EO4KAcDLHGhzhg7ga21SQX2vwquBqxuzhZO76TLaxnHZg3DpLIqhnDTBhbFhra6GwD+KmVONzdiaRBQ5bhxz5HOfstYMDlWDW4sszqHOaXKZXI99WyIaq57XUA/a3mUKRSJb7tlEswknoRNC3L4BSddMqTm6SLfHRynzQnSn6mOPVm/f3inT0PCDM9ok22oiwETGFfUOxg6u6mps2E4axrlzGRALGypwrCrnKwmwgiJlOkbuThHJ6R0evX+ZvTiHQQ8EVNoF/5iSHO10WL6ReeGP690X0bZMwGcJcpZJqDpltJl20X8YZUkD1VoQg7ub49mPYD0REw8vszcZEsqV5u0MVxAANHMrulCJQzuzSZmSm7agZtCtwVInaBN76riHKAqyKocpA/nnd15W376PImBVrXwCPIG5smx6NCBh0qfWMIdLx4twIfHvrcPok7n/OMFoQknJ1IdZjzX/1MIXzpdN0jLAi9BQFv2zjpcQz2VXVDvAsJ//Ys+9W2bDLci79qJx6LwWxRNJHCW3jkGbxRt+HOeIvmf0wOn1zfPYJdJYM87k9qWL4mE8y17uYrcOV9gn1DHUB19Djaxxx2wEluL3kJS503TGf3IdqF2f+gnk="
-
-
-
-# You will likely prefer "language: generic" for travis configuration,
-# rather than, say "language: python". Multibuild doesn't use
-# Travis-provided Python but rather installs and uses its own, where the
-# Python version is set from the MB_PYTHON_VERSION variable. You can still
-# specify a language here if you need it for some unrelated logic and you
-# can't use Multibuild-provided Python or other software present on a
-# builder.
+  - secure: aq9vP+KEBCNsd7ycxq4q70rTlENlyAS+OBI1vzerxwvUjxi6MkiwD+PrGd9uJu70zaIFsOyqjp3vs+vlrfSNItqiCwEJJlldP29Op6J++79p/i8SFHAZ8GjVlV2TbsBF7rGITf0l17KRKDyjvomgxpX0h5FhnFZ5oV8TW29jzugBB34I1w3+IjI88W/Cp/AJkRoqAXaVagSZ1wiD2yUxMVG/tUzkE5abj57h8qV5cpZAkVsBibva66ADu//p5kI1foWcsTJb5sbhmr7nEHH10oUDwgK2erfEu805QbxHcOjfQ2OAvZ6ESoEeJusYqpqj3v/mPOaEpD/xPPqUmJticW+M13Sn/kClT/LnfXFnntg5brsWm92xkZ+mxhY1nJ53g+fEQvKL48ElwZMB4jD9e+eY4iMFmSiF8RkvaKhL8UepHnb3OCW5C9VO93kUPJHJgiJns/aid5SMSlAbMIR4d54x5OOfx3btX7IakBVWr6ST5oW3tAEgUG0dTyS5o1Y7p26oi90KrsVaSTTkLqK96hky9+xESspekto/Urvytpst9M7YvSa8knLg2JN0JB5mmUZhFuGY06InY8kzrda+YiQdFt07C4quYG2IbmN+syVvna4AmLP0/IWmaqfs9tDaYeivfxaSSUEJD4SeRYO8KjiF7KJO2THlS2nfECplDm8=
 language: generic
-
-# Required in Linux to invoke `docker` ourselves
 services: docker
-
-# Host distribution.  This is the distribution from which we run the build
-# and test containers, via docker.
 dist: xenial
-
 cache:
   directories:
-    - $HOME/.cache/pip
-    - $HOME/Library/Caches/Homebrew
-
+  - "$HOME/.cache/pip"
+  - "$HOME/Library/Caches/Homebrew"
 jobs:
   include:
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.6
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.6
-        - PLAT=i686
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.7
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.7
-        - PLAT=i686
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.8
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.8
-        - PLAT=i686
-
-    - os: osx
-      language: generic
-      env:
-        - MB_PYTHON_VERSION=3.6
-    - os: osx
-      language: generic
-      env:
-        - MB_PYTHON_VERSION=3.7
-    - os: osx
-      language: generic
-      env:
-        - MB_PYTHON_VERSION=3.8
-
-before_install:
-    - source multibuild/common_utils.sh
-    - source multibuild/travis_steps.sh
-    - clean_code $REPO_DIR $BUILD_COMMIT
-    - before_install
-
+  - os: linux
+    env:
+    - MB_PYTHON_VERSION=3.6
 install:
-    # Maybe get and clean and patch source
-    - build_wheel $REPO_DIR $PLAT
-
-script:
-    - install_run $PLAT
-
+- set -e
+- chmod +x run_me.sh
+- "./run_me.sh"
 after_success:
-    # Copy compiled wheels to dist/ where Travis `dpl` tool can find them and upload to PyPI
-    - mkdir -p dist; mkdir -p dist/fixeddist; cp ${TRAVIS_BUILD_DIR}/wheelhouse/*.whl dist
-    - pip install auditwheel
-    - auditwheel repair -w dist/fixeddist dist/*.whl 
-    - pip install twine
-    - twine upload --verbose -u bbp.opensource -p ${PYPI_PASSWORD} dist/fixeddist/*
+- pip install twine
+- echo "event type ${TRAVIS_EVENT_TYPE}"
+- echo "event type ${TRAVIS_BRANCH}"
+- set +e
+- test ${TRAVIS_EVENT_TYPE} = "push" && test ${TRAVIS_BRANCH} = "master" && set -e && twine upload --skip-existing --verbose -u __token__ -p ${PYPI_PASSWORD} ${TRAVIS_BUILD_DIR}/dist/*

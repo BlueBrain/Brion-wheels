@@ -1,19 +1,17 @@
 #!/bin/bash
 # Install some tools
+# Install basic python pnd system ackages
 yum install -y wget.x86_64
-# Install basic python packages
-yum install -y rh-python36.x86_64
-yum install -y rh-python36-scldevel.x86_64
-yum install -y rh-python36-numpy.x86_64
+yum install -y rh-python36.x86_64 rh-python36-scldevel.x86_64 rh-python36-numpy.x86_64
+yum install -y zlib zlib-devel zlib-static
+yum install -y bzip2-devel bzip2-libs
+yum install -y tkinter tk-devel
+yum install -y xz-devel xz-libs xz-lzma-compat
+yum install -y hdf5 hdf5-devel hdf5-static
+
 # Enable python installation
 source /opt/rh/rh-python36/enable
-# Install needed packages from pip
-pip install pip --upgrade
-pip install cmake
-pip install auditwheel # Will install wheel alongside
-# Install extra libraries
-yum install -y zlib.x86_64 zlib-devel.x86_64 zlib-static.x86_64
-yum install -y hdf5.x86_64 hdf5-devel.x86_64 hdf5-static.x86_64
+
 # Install boost 1.70
 mkdir /boostinstall && cd /boostinstall
 wget https://dl.bintray.com/boostorg/release/1.70.0/source/boost_1_70_0.tar.gz
