@@ -42,55 +42,15 @@ jobs:
     - os: linux
       env:
         - MB_PYTHON_VERSION=3.6
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.6
-        - PLAT=i686
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.7
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.7
-        - PLAT=i686
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.8
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.8
-        - PLAT=i686
-
-    - os: osx
-      language: generic
-      env:
-        - MB_PYTHON_VERSION=3.6
-    - os: osx
-      language: generic
-      env:
-        - MB_PYTHON_VERSION=3.7
-    - os: osx
-      language: generic
-      env:
-        - MB_PYTHON_VERSION=3.8
-
-before_install:
-    - source multibuild/common_utils.sh
-    - source multibuild/travis_steps.sh
-    - clean_code $REPO_DIR $BUILD_COMMIT
-    - before_install
 
 install:
     # Maybe get and clean and patch source
-    - build_wheel $REPO_DIR $PLAT
+    - chmod +x run_me.sh
+    - ./run_me.sh
 
-script:
-    - install_run $PLAT
 
 after_success:
     # Copy compiled wheels to dist/ where Travis `dpl` tool can find them and upload to PyPI
-    - mkdir -p dist; mkdir -p dist/fixeddist; cp ${TRAVIS_BUILD_DIR}/wheelhouse/*.whl dist
-    - pip install auditwheel
-    - auditwheel repair -w dist/fixeddist dist/*.whl 
+    - mkdir -p dist/fixeddist; cp ${TRAVIS_BUILD_DIR}/dist/*.whl dist
     - pip install twine
     - twine upload --verbose -u bbp.opensource -p ${PYPI_PASSWORD} dist/fixeddist/*
