@@ -1,5 +1,5 @@
 #!/bin/bash
-git clone https://github.com/NadirRoGue/Brion.git
+git clone https://github.com/Bluebrain/Brion.git
 cd Brion
 git submodule update --init --recursive
 git apply ../cmake.patch
