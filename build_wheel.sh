@@ -11,7 +11,6 @@ mkdir /opt/dist
 source /opt/rh/rh-python36/enable
 pip3.6 install cmake 
 
-
 python_versions=( "/opt/rh/rh-python36/root/usr/" "/opt/py37" "/opt/py38")
 
 for i in "${python_versions[@]}"
@@ -24,8 +23,8 @@ do :
   LD_LIBRARY_PATH=$PYTHON_ROOT_PATH/lib:$LD_LIBRARY_PATH  $PYTHON_ROOT_PATH/bin/pip3 install numpy wheel
   LD_LIBRARY_PATH=$PYTHON_ROOT_PATH/lib:$LD_LIBRARY_PATH  $PYTHON_ROOT_PATH/bin/python3 setup.py bdist_wheel
   auditwheel repair /Brion/dist/*.whl
-  mv /Brion/dist/*.whl /opt/dist
-  rm build -rf
+  mv wheelhouse/*.whl /opt/dist
+  rm dist build wheelhouse -rf
 done
 
 
