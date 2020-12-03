@@ -52,4 +52,4 @@ after_success:
     - set -e
     - pip install twine
     - ls ${TRAVIS_BUILD_DIR}/dist
-    - twine upload --repository testpypi --verbose ${TRAVIS_BUILD_DIR}/dist/*
+    - twine upload --verbose -u bbp.opensource -p ${PYPI_PASSWORD} ${TRAVIS_BUILD_DIR}/dist/*
