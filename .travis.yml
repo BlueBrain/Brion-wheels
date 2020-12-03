@@ -44,16 +44,12 @@ jobs:
 
 install:
     # Maybe get and clean and patch source
+    - set -e
     - chmod +x run_me.sh
     - ./run_me.sh
-    - set -x
-    - ls -la ${TRAVIS_BUILD_DIR}
-    - ls -la ${TRAVIS_BUILD_DIR}/dist
-
 
 after_success:
-    # Copy compiled wheels to dist/ where Travis `dpl` tool can find them and upload to PyPI
+    - set -e
     - pip install twine
-    - pwd
     - ls ${TRAVIS_BUILD_DIR}/dist
-    - twine upload --verbose -u bbp.opensource -p ${PYPI_PASSWORD} ${TRAVIS_BUILD_DIR}/dist/*
+    - twine upload --repository testpypi --verbose -u bbp.opensource -p ${PYPI_PASSWORD} ${TRAVIS_BUILD_DIR}/dist/*
