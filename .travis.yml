@@ -14,7 +14,6 @@ env:
     - secure: "pypi-AgEIcHlwaS5vcmcCJDgzNmNlMmRkLTcyODgtNDJlOC05N2NhLTY5Mzk3Zjk2MGQyNgACNnsicGVybWlzc2lvbnMiOiB7InByb2plY3RzIjogWyJicmlvbiJdfSwgInZlcnNpb24iOiAxfQAABiCie-sE7EmgWoufMLjVKzHcq0d7GJq5NA18rAzzOYTRHA"
 
 
-
 # You will likely prefer "language: generic" for travis configuration,
 # rather than, say "language: python". Multibuild doesn't use
 # Travis-provided Python but rather installs and uses its own, where the
@@ -49,7 +48,6 @@ install:
     - ./run_me.sh
 
 after_success:
-    - set -e
     - pip install twine
     - ls ${TRAVIS_BUILD_DIR}/dist
-    - twine upload --verbose -u bbp.opensource -p ${PYPI_PASSWORD} ${TRAVIS_BUILD_DIR}/dist/*
+    - test $TRAVIS_BRANCH = "master" && twine upload --verbose -u bbp.opensource -p ${PYPI_PASSWORD} ${TRAVIS_BUILD_DIR}/dist/*
