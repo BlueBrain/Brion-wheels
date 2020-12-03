@@ -50,4 +50,4 @@ install:
 after_success:
     - pip install twine
     - ls ${TRAVIS_BUILD_DIR}/dist
-    - test $TRAVIS_BRANCH = "master" && twine upload --verbose -u bbp.opensource -p ${PYPI_PASSWORD} ${TRAVIS_BUILD_DIR}/dist/*
+    - test $TRAVIS_EVENT_TYPE = "push" && echo "Pushing to pypi" ; twine upload --verbose -u bbp.opensource -p ${PYPI_PASSWORD} ${TRAVIS_BUILD_DIR}/dist/*
