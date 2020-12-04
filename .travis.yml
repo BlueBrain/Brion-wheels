@@ -11,7 +11,7 @@ env:
     - TEST_DEPENDS="numpy nose"
     - PLAT=x86_64
     - UNICODE_WIDTH=32
-    - secure: "pypi-AgEIcHlwaS5vcmcCJDgzNmNlMmRkLTcyODgtNDJlOC05N2NhLTY5Mzk3Zjk2MGQyNgACNnsicGVybWlzc2lvbnMiOiB7InByb2plY3RzIjogWyJicmlvbiJdfSwgInZlcnNpb24iOiAxfQAABiCie-sE7EmgWoufMLjVKzHcq0d7GJq5NA18rAzzOYTRHA"
+    - secure: "a+9XuRVgKiGulXXcd7xBik0zuYaaxpBVS0RWBmQaC76OdU+xxipHWNLT002nK/vw2VjwTrBNxrvkMYbgEfMoWVYzDaf9pSrYzY9CEGZOxslLEZ4nliK4Az/PA59duVj5B13+ikuwRmYIbmoE/FbkvVvBmrAMFemeAGXb0IuF5ihKT/Pbl4k/PNRlQxYvBrt1gwo6Rruwi7f6Q2brqIXmIcFYsZiCSv4J8d7DtV2BsLfHhpqkGkjKQcvYQKiNOF97+Ll+lDaDSBuyB8nrky5oqI8sxN+bWMwLZI6tEgKA+4yzeGyviKod0izbsUIGB+lWu9sJZKN+jYbLIuXRm8HS6cPtMdlFbk/NYcfhragP0w3YY81ZjRa+7AJFb1EUMbhCOE31hYpZt/R51h7MSgQjAvFrwbayZ2vE3AklfVf5ZwyLXABLlEqSJHgDiZ5oEdUSqdNFQxQH6LpNrBOzjypLVYH+gDwzZhx9uNOloma/TXBvh1mxker+jJ3f8kjCuiqBTj0M/Q27q0NNn4FSNvxwC5RvLSvuZLHwHhEtA3vxkkp8svdLqsU1II1YwsabxOnnq3MQtK1WYlEIrmwa36J5KoN3Vr5W85WfCBQEOMhwzEX7fb9HPaLhO4CEAs0fl92MdioMEc63dTSsVY4jMRXypDSD5z5pI/GkIUJYh1HCSCI="
 
 
 # You will likely prefer "language: generic" for travis configuration,
@@ -50,4 +50,4 @@ install:
 after_success:
     - pip install twine
     - ls ${TRAVIS_BUILD_DIR}/dist
-    - test $TRAVIS_BRANCH = "master" && twine upload --verbose -u bbp.opensource -p ${PYPI_PASSWORD} ${TRAVIS_BUILD_DIR}/dist/*
+    - twine upload --verbose -u __token__ -p ${PYPI_PASSWORD} ${TRAVIS_BUILD_DIR}/dist/*
