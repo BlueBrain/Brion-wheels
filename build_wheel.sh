@@ -7,7 +7,8 @@ source /opt/rh/rh-python36/enable
 pip install pip --upgrade
 pip3.6 install cmake 
 
-python_versions=( "/opt/rh/rh-python36/root/usr/" "/opt/py37" "/opt/py38")
+python_versions=( "/opt/rh/rh-python36/root/usr/")
+#python_versions=( "/opt/rh/rh-python36/root/usr/" "/opt/py37" "/opt/py38")
 
 for i in "${python_versions[@]}"
 do : 
