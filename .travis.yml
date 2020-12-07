@@ -1,3 +1,6 @@
+branches:
+  only:
+    - master
 env:
   global:
   - secure: aq9vP+KEBCNsd7ycxq4q70rTlENlyAS+OBI1vzerxwvUjxi6MkiwD+PrGd9uJu70zaIFsOyqjp3vs+vlrfSNItqiCwEJJlldP29Op6J++79p/i8SFHAZ8GjVlV2TbsBF7rGITf0l17KRKDyjvomgxpX0h5FhnFZ5oV8TW29jzugBB34I1w3+IjI88W/Cp/AJkRoqAXaVagSZ1wiD2yUxMVG/tUzkE5abj57h8qV5cpZAkVsBibva66ADu//p5kI1foWcsTJb5sbhmr7nEHH10oUDwgK2erfEu805QbxHcOjfQ2OAvZ6ESoEeJusYqpqj3v/mPOaEpD/xPPqUmJticW+M13Sn/kClT/LnfXFnntg5brsWm92xkZ+mxhY1nJ53g+fEQvKL48ElwZMB4jD9e+eY4iMFmSiF8RkvaKhL8UepHnb3OCW5C9VO93kUPJHJgiJns/aid5SMSlAbMIR4d54x5OOfx3btX7IakBVWr6ST5oW3tAEgUG0dTyS5o1Y7p26oi90KrsVaSTTkLqK96hky9+xESspekto/Urvytpst9M7YvSa8knLg2JN0JB5mmUZhFuGY06InY8kzrda+YiQdFt07C4quYG2IbmN+syVvna4AmLP0/IWmaqfs9tDaYeivfxaSSUEJD4SeRYO8KjiF7KJO2THlS2nfECplDm8=
@@ -19,7 +22,5 @@ install:
 - "./run_me.sh"
 after_success:
 - pip install twine
-- echo "event type ${TRAVIS_EVENT_TYPE}"
-- echo "event type ${TRAVIS_BRANCH}"
 - set +e
 - test ${TRAVIS_EVENT_TYPE} = "push" && test ${TRAVIS_BRANCH} = "master" && set -e && twine upload --skip-existing --verbose -u __token__ -p ${PYPI_PASSWORD} ${TRAVIS_BUILD_DIR}/dist/*
