@@ -23,5 +23,6 @@ install:
 after_success:
 - pip install twine
 - echo "event type ${TRAVIS_EVENT_TYPE}"
+- echo "event type ${TRAVIS_BRANCH}"
 - set +e
-- test ${TRAVIS_EVENT_TYPE} = "push" && set -e && twine upload --skip-existing --verbose -u __token__ -p ${PYPI_PASSWORD} ${TRAVIS_BUILD_DIR}/dist/*
+- test ${TRAVIS_EVENT_TYPE} = "push" && test ${TRAVIS_BRANCH} = "master" && set -e && twine upload --skip-existing --verbose -u __token__ -p ${PYPI_PASSWORD} ${TRAVIS_BUILD_DIR}/dist/*

@@ -1,3 +1,3 @@
 # wheel_builder
 
-just run *run_me.sh* and you will find wheels in **dist** folder
+Update BRION_TAG in  *run_me.sh*, run it and you will find wheels in **dist** folder
