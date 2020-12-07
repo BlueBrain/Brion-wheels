@@ -25,4 +25,7 @@ install:
 - "./run_me.sh"
 after_success:
 - pip install twine
+- echo "event type ${TRAVIS_EVENT_TYPE}"
+- test ${TRAVIS_EVENT_TYPE} != "pull_request" && echo "NON PR BUILD (with test )"
+- if [[ $TRAVIS_EVENT_TYPE != "pull_request" ]]; then echo "NON PR BULD (with brackets)"; fi
 - test ${TRAVIS_EVENT_TYPE} = "push" && set -e && twine upload --skip-existing --verbose -u __token__ -p ${PYPI_PASSWORD} ${TRAVIS_BUILD_DIR}/dist/*
