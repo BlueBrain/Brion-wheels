@@ -14,7 +14,7 @@ source /opt/rh/rh-python36/enable
 
 # Install boost 1.70
 mkdir /boostinstall && cd /boostinstall
-wget https://dl.bintray.com/boostorg/release/1.70.0/source/boost_1_70_0.tar.gz
+wget https://boostorg.jfrog.io/artifactory/main/release/1.70.0/source/boost_1_70_0.tar.gz
 tar -xzf boost_1_70_0.tar.gz
 cd ./boost_1_70_0
 ./bootstrap.sh --with-python=/opt/rh/rh-python36/root/usr/bin/python3.6m

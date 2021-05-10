@@ -1,5 +1,5 @@
 #!/bin/bash
-BRION_TAG=3.3.1
+BRION_TAG=3.3.2
 
 git clone https://github.com/Bluebrain/Brion.git
 pushd Brion
